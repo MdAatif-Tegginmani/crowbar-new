@@ -1,7 +1,12 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, RefreshCw } from "lucide-react";
 
@@ -11,6 +16,8 @@ interface RaffleStatus {
   totalEntries?: number;
   prizePool?: string;
   drawId?: string;
+  userEntryId?: string;
+  userEmail?: string;
 }
 
 const RaffleStatusChecker = () => {
@@ -20,13 +27,23 @@ const RaffleStatusChecker = () => {
 
   const fetchRaffleStatus = async () => {
     setIsLoading(true);
-    
+
     try {
       const response = await fetch("/api/raffle-status");
-      
+
       if (response.ok) {
         const data = await response.json();
-        setRaffleData(data);
+
+        // Retrieve user's entry ID from local storage
+        const userEntryId = localStorage.getItem("raffleEntryId");
+        const userEmail = localStorage.getItem("raffleEntryEmail");
+
+        setRaffleData({
+          ...data,
+          userEntryId: userEntryId || undefined,
+          userEmail: userEmail || undefined,
+        });
+
         toast({
           title: "Status Updated",
           description: "Raffle status has been refreshed.",
@@ -42,10 +59,12 @@ const RaffleStatusChecker = () => {
         nextDrawTime: "2024-01-15 18:00:00 UTC",
         totalEntries: 1247,
         prizePool: "$50,000",
-        drawId: "DRAW-2024-001"
+        drawId: "DRAW-2024-001",
+        userEntryId: localStorage.getItem("raffleEntryId") || undefined,
+        userEmail: localStorage.getItem("raffleEntryEmail") || undefined,
       };
       setRaffleData(mockData);
-      
+
       toast({
         title: "Demo Mode",
         description: "Showing mock raffle data for demonstration.",
@@ -94,11 +113,9 @@ const RaffleStatusChecker = () => {
                   <div className="font-headline text-sm font-bold text-secondary mb-1">
                     STATUS
                   </div>
-                  <div className="font-mono text-lg">
-                    {raffleData.status}
-                  </div>
+                  <div className="font-mono text-lg">{raffleData.status}</div>
                 </div>
-                
+
                 {raffleData.nextDrawTime && (
                   <div>
                     <div className="font-headline text-sm font-bold text-secondary mb-1">
@@ -122,7 +139,7 @@ const RaffleStatusChecker = () => {
                     </div>
                   </div>
                 )}
-                
+
                 {raffleData.prizePool && (
                   <div>
                     <div className="font-headline text-sm font-bold text-secondary mb-1">
@@ -135,15 +152,33 @@ const RaffleStatusChecker = () => {
                 )}
               </div>
             </div>
-            
+
             {raffleData.drawId && (
               <div className="mt-4 pt-4 border-t border-secondary">
                 <div className="font-headline text-sm font-bold text-secondary mb-1">
                   DRAW ID
                 </div>
-                <div className="font-mono text-sm">
-                  {raffleData.drawId}
+                <div className="font-mono text-sm">{raffleData.drawId}</div>
+              </div>
+            )}
+
+            {raffleData.userEntryId && (
+              <div className="mt-4 pt-4 border-t border-secondary">
+                <div className="font-headline text-sm font-bold text-secondary mb-1">
+                  YOUR ENTRY ID
                 </div>
+                <div className="font-mono text-sm">
+                  {raffleData.userEntryId}
+                </div>
+              </div>
+            )}
+
+            {raffleData.userEmail && (
+              <div className="mt-2 pt-2 border-t border-secondary">
+                <div className="font-headline text-sm font-bold text-secondary mb-1">
+                  REGISTERED EMAIL
+                </div>
+                <div className="font-mono text-sm">{raffleData.userEmail}</div>
               </div>
             )}
           </div>
