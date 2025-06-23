@@ -9,6 +9,7 @@ import News from "./pages/News";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Payments from "./pages/Payments";
+import Interactive from "./pages/Interactive";
 import Success from "./pages/Success";
 import Cancelled from "./pages/Cancelled";
 import NotFound from "./pages/NotFound";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/payments" element={<Payments />} />
+          <Route path="/interactive" element={<Interactive />} />
           <Route path="/success" element={<Success />} />
           <Route path="/cancelled" element={<Cancelled />} />
           <Route path="*" element={<NotFound />} />

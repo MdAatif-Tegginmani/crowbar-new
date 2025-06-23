@@ -4,9 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import SubmitLoreForm from "@/components/SubmitLoreForm";
-import RaffleStatusChecker from "@/components/RaffleStatusChecker";
-import StripeCheckoutSimulation from "@/components/StripeCheckoutSimulation";
 
 const Index = () => {
   const services = [
@@ -99,33 +96,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Interactive Features Section */}
-      <section className="py-20 bg-muted/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-headline text-3xl lg:text-4xl font-bold mb-4">
-              Interactive <span className="text-secondary">Platform</span>
-            </h2>
-            <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto">
-              Experience our industrial-strength platform through interactive features 
-              designed for community engagement and raffle management.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1">
-              <RaffleStatusChecker />
-            </div>
-            <div className="lg:col-span-1">
-              <StripeCheckoutSimulation />
-            </div>
-            <div className="lg:col-span-1">
-              <SubmitLoreForm />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Services Overview */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -176,15 +146,27 @@ const Index = () => {
           <p className="font-body text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join the companies that trust CrowbarLtd for their mission-critical infrastructure.
           </p>
-          <Button 
-            asChild 
-            size="lg"
-            className="industrial-shadow bg-secondary hover:bg-secondary/90 text-secondary-foreground font-body font-semibold"
-          >
-            <Link to="/contact">
-              Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              asChild 
+              size="lg"
+              className="industrial-shadow bg-secondary hover:bg-secondary/90 text-secondary-foreground font-body font-semibold"
+            >
+              <Link to="/contact">
+                Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button 
+              asChild 
+              variant="outline" 
+              size="lg"
+              className="industrial-shadow border-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground font-body font-semibold"
+            >
+              <Link to="/interactive">
+                Try Interactive Platform
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </Layout>
