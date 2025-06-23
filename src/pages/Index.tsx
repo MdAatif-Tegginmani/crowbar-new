@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import SubmitLoreForm from "@/components/SubmitLoreForm";
+import RaffleStatusChecker from "@/components/RaffleStatusChecker";
+import StripeCheckoutSimulation from "@/components/StripeCheckoutSimulation";
 
 const Index = () => {
   const services = [
@@ -92,6 +95,33 @@ const Index = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Features Section */}
+      <section className="py-20 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-headline text-3xl lg:text-4xl font-bold mb-4">
+              Interactive <span className="text-secondary">Platform</span>
+            </h2>
+            <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto">
+              Experience our industrial-strength platform through interactive features 
+              designed for community engagement and raffle management.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-1">
+              <RaffleStatusChecker />
+            </div>
+            <div className="lg:col-span-1">
+              <StripeCheckoutSimulation />
+            </div>
+            <div className="lg:col-span-1">
+              <SubmitLoreForm />
+            </div>
           </div>
         </div>
       </section>
