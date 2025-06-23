@@ -15,7 +15,6 @@ const Layout = ({ children }: LayoutProps) => {
     { name: "Home", href: "/" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "News & Insights", href: "/news" },
-    { name: "Interactive", href: "/interactive" },
     { name: "Payments", href: "/payments" },
     { name: "Contact", href: "/contact" },
   ];

@@ -2,6 +2,7 @@
 import Layout from "@/components/Layout";
 import SubmitLoreForm from "@/components/SubmitLoreForm";
 import RaffleStatusChecker from "@/components/RaffleStatusChecker";
+import StripeCheckoutSimulation from "@/components/StripeCheckoutSimulation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Trophy, Loader2 } from "lucide-react";
@@ -149,12 +150,15 @@ const Interactive = () => {
             </CardContent>
           </Card>
 
-          {/* Interactive Features - Now using 2 columns to fill space */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div>
+          {/* Interactive Features */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-1">
               <RaffleStatusChecker />
             </div>
-            <div>
+            <div className="lg:col-span-1">
+              <StripeCheckoutSimulation />
+            </div>
+            <div className="lg:col-span-1">
               <SubmitLoreForm />
             </div>
           </div>
